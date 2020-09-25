@@ -56,7 +56,7 @@ There is 10 tiles and 10 effects.
 
 ### Tiling :
 1 - > 4 : divisions on screen controlled by the  
-![.](readme_files/gui_1.png) .  
+![.](readme_files/gui_1.png).  
 
 4 : sections are controlled by the `Cell -> offset x//y ` :  
 ![.](readme_files/gui_2.png)  
