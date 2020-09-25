@@ -36,7 +36,7 @@ void ofxShaderGlitch::update(ofEventArgs & args) {
 	//simple callback when preset is loaded 
 	if (presetsManager.isDoneLoad())
 	{
-		ofLogNotice(__FUNCTION__) << "[ " << presetsManager.getGroupName() << "] ------------------------------------------------------------- PRESET LOADED";
+		//ofLogNotice(__FUNCTION__) << "[ " << presetsManager.getGroupName() << "] ------------------------------------------------------------- PRESET LOADED";
 	}
 }
 
@@ -74,7 +74,7 @@ void ofxShaderGlitch::keyPressed(ofKeyEventArgs &keyArgs) {
 	}
 
 		else if (keyArgs.key == ' ') {
-			presetsManager.setToggleRandomizerPreset();
+			//presetsManager.setToggleRandomizerPreset();
 		}
 
 		else if (keyArgs.key == OF_KEY_BACKSPACE) {
@@ -88,10 +88,7 @@ void ofxShaderGlitch::keyPressed(ofKeyEventArgs &keyArgs) {
 void ofxShaderGlitch::setupPresetsManager()
 {
 	//customize
-	presetsManager.setPath_GlobalFolder(path_GLOBAL_Folder + "/ofxPresetsManager");
-	presetsManager.setPath_KitFolder("presets");
-	presetsManager.setPath_PresetsFolder("archive");
-	presetsManager.setPath_ControlSettings("settings");
+	presetsManager.setPath_UserKit_Folder(path_GLOBAL_Folder + "/ofxPresetsManager");
 
 	//-
 
@@ -127,8 +124,8 @@ void ofxShaderGlitch::setupPresetsManager()
 
 	params_Control.setName("CONTROLS");
 	params_Control.add(glitch.bEnable);
-	params_Control.add(presetsManager.PRESET_selected);
-	params_Control.add(presetsManager.PLAY_RandomizeTimer);
+	//params_Control.add(presetsManager.PRESET_selected);
+	//params_Control.add(presetsManager.PLAY_RandomizeTimer);
 	params_Control.add(glitch.typeEffectName.set("TYPE", ""));
 	params_Control.add(glitch.bEnableBlur);
 	params_Control.add(glitch.bReset);

@@ -3,19 +3,28 @@
 //  Gradient
 //
 //  Created by Pierre Tardif on 10/05/2020.
+//	modified by moebiusSurfing
 //
 
 ///	TODO:
 ///	+	reset per zone
+///	+	workflow helper and text info
 ///	+	make play toggle public to expose to gui
 ///	+	make 2 public groups to split into external gui
 
 #ifndef ofxShaderGlitch_hpp
 #define ofxShaderGlitch_hpp
 
-#include <stdio.h>
+//----
+
+//#define USE_GUI_INTERNAL
+
+//----
+
+
 #include "ofMain.h"
-#include "ofEvents.h"
+//#include <stdio.h>
+//#include "ofEvents.h"
 
 // ---- dependency ---- //
 #include "ofxAutoReloadedShader.h"
@@ -25,7 +34,6 @@
 
 #include "ofxPresetsManager.h"
 
-//#define USE_GUI_INTERNAL
 #ifdef USE_GUI_INTERNAL
 #include "ofxGui.h"
 #endif

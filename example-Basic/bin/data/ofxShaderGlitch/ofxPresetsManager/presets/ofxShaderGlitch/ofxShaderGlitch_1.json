@@ -1,0 +1,27 @@
+{
+    "ofxShaderGlitch": {
+        "A_TYPE_OF_TYLING": {
+            "CELL": {
+                "MASK_LAYERS": "5",
+                "OFFSET": "1, 0.64"
+            },
+            "LINES___COLUMNS_AMNT": "9.081, 2",
+            "SPEED": "10, 4.054",
+            "TYPE_OF_TYLING": "5"
+        },
+        "BLUR": "1",
+        "B_TYPE_OF_EFFECT": {
+            "ALPHA_GRADIANT": "1",
+            "BACKGROUND_COLOR": "63, 223, 207, 255",
+            "CONTINUOUS": "0",
+            "FEEDBACK": {
+                "ENABLE_FEEDBACK": "0"
+            },
+            "GRADIANT_COLOR": "200, 255, 0, 255",
+            "RECTANGLE_SIZE": "0.25, 0.25, 0.75, 0.75",
+            "THRESHOLD_NOISE": "0.45",
+            "TYPE_OF_EFFECT": "0"
+        },
+        "ENABLE": "1"
+    }
+}
