@@ -7,7 +7,7 @@
         "GROUP_LINK": "0",
         "PRESET_SELECTORS": {
             "ofxShaderGlitch": {
-                "ofxShaderGlitch": "8",
+                "ofxShaderGlitch": "1",
                 "t_BPM": "120"
             }
         }
