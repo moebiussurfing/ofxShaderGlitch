@@ -9,7 +9,7 @@ Glitch Shader generator In [Openframeworks](https://openframeworks.cc).
 
 - - - -
 
-![.](Assets/example.gif)
+![.](readme_files/example.gif)
 
 - - - -
 ## Getting Started
@@ -55,8 +55,12 @@ The tiling create patterns on which to apply the effects.
 There is 10 tiles and 10 effects.
 
 ### Tiling :
-1 - > 4 : divisions on screen controlled by the ![.](Assets/gui_1.png) .</br>
-4 : sections are controlled by the `Cell -> offset x//y ` : ![.](Assets/gui_2.png)</br>
+1 - > 4 : divisions on screen controlled by the  
+![.](readme_files/gui_1.png) .</br>
+
+4 : sections are controlled by the `Cell -> offset x//y ` :  
+![.](readme_files/gui_2.png)</br>
+
 5 - > 9 : patterns generation  - parameters to control are : `Mask Layers` for tyling 5, `thresholdNoise` for tyling 6, `continuous` for 7->9.</br>
 `Speed.y` is controlling the speed of the effects for tyling 5 -> 9.</br>
 `RectangleSize` controls the gradiant rect boundaries, and gradiantColor controls its color.</br>
@@ -67,15 +71,23 @@ Tyling is processed in the main.frag by setting up the `prop` variable.
 
 ### Effects :
 0 : **glitch**</br>
+
 1 : **texture Shift** - works best withj tyling 7.</br>
+
 2 : **texture shift prop** - shift on texture proportional to prop. Works best with tyling 8.</br>
+
 3 : **lateral shift** : shift the texture horizontally following the `amnt of lines // columns`, to change the direction to horizontal, change the last argument of `lateralSlider` to `true`. </br>
+
 4 : **shift with noise per cell** direction change controlled by `continuous`.
+
 5 & 6 : **grad center + inner flip coords** - rect boundaries are controlled by the `rectangle size`, and the amount of sections by `amnt of lines // columns`. The functions `texFlipV` in main.frag are used here, with the last 2 arguments adding a flip on the section coordinate, and a gradiant on the rectangle ( in this case true and true, therefore grad + flip is processed on the image).</br>
 
 7 : **bright lines** sections of lines of different colors. the first argument gives the direction of the lines - in this case y -. The parameter `continuous` de activates the thresholding on gb, if `ON`, which makes it go less flashy. The `Mask Layers` control the amount of colors layers added. Works best with 2 layers. </br>
+
 8 : **background color** // invert background color - outside pattern detection. </br>
+
 9 : **gradiant color** controlled by `rectangle size` and `gradiant color`, and `alphaGradiant`.</br>
+
 10 : **gradiant color + invert** same as above with inverted color for inner rectangle section. </br>
 
 </br>
@@ -84,9 +96,10 @@ Tyling is processed in the main.frag by setting up the `prop` variable.
 
 `Feedback` is used to create a feedback on the edges used in the edge detection:
 
-![.](Assets/edgesFeedback.png)
+![.](readme_files/edgesFeedback.png)
 </br>
-This technic uses the strength and angle from the [Cannny Edge detection](https://towardsdatascience.com/canny-edge-detection-step-by-step-in-python-computer-vision-b49c3a2d8123) seperatly implemented [here](https://github.com/pierrextardif/ofxEdgeCannyDetector), and returns an intensity of the edges which is processed in a feedback shader to get a trailing effect. works best with the webcam.
+This technic uses the strength and angle from the [Cannny Edge detection](https://towardsdatascience.com/canny-edge-detection-step-by-step-in-python-computer-vision-b49c3a2d8123) seperatly implemented [here](https://github.com/pierrextardif/ofxEdgeCannyDetector), and returns an intensity of the edges which is processed in a feedback shader to get a trailing effect. works best with the webcam.  
+
 The feedback turns the effects and tilying to -1, as to not interfer with the rest of the shader.
 There is also an Edge detection function (not used) which works with key `c` to control the non Maximum of the edge detection and continuity of the pixels value when in between threshold values by checking the neighboors values, when the `nonMaxAndContinuity` is turned `ON` ( initialised `OFF`).
 
