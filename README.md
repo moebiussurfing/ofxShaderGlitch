@@ -36,9 +36,9 @@ The addon works by treating the texture the way OF does it : rectangular texture
 
 Just try running [the example](./example).
 
-Press `g` to show/hidde the gui.
-Press `i` to change the type of input - webcam or image.
-There is 2 main sections in the gui :  `Type of Tyling` and `Type of Effect`.
+Press `g` to show/hidde the gui.  
+Press `i` to change the type of input - webcam or image.  
+There is 2 main sections in the gui :  `Type of Tyling` and `Type of Effect`.  
 
 
 ## Effects
@@ -54,7 +54,10 @@ There is 10 tiles and 10 effects.
 4 : sections are controlled by the `Cell -> offset x//y ` :  
 ![image](/readme_images/gui_2.png?raw=true "image")
 
-5 - > 9 : patterns generation  - parameters to control are : `Mask Layers` for tyling 5, `thresholdNoise` for tyling 6, `continuous` for 7->9.  
+5 - > 9 : patterns generation  - parameters to control are :  
+`Mask Layers` for tyling 5,  
+`thresholdNoise` for tyling 6,  
+`continuous` for 7->9.  
 `Speed.y` is controlling the speed of the effects for tyling 5 -> 9.  
 `RectangleSize` controls the gradiant rect boundaries, and gradiantColor controls its color.  
 
@@ -65,17 +68,31 @@ Tyling is processed in the main.frag by setting up the `prop` variable.
 ### Effects :
 0 : **glitch**  
 
-1 : **texture Shift** - works best withj tyling 7.  
+1 : **texture Shift** :  
+works best withj tyling 7.  
 
-2 : **texture shift prop** - shift on texture proportional to prop. Works best with tyling 8.  
+2 : **texture shift prop** :  
+shift on texture proportional to prop. Works best with tyling 8.  
 
-3 : **lateral shift** : shift the texture horizontally following the `amnt of lines // columns`, to change the direction to horizontal, change the last argument of `lateralSlider` to `true`.  
+3 : **lateral shift** :  
+shift the texture horizontally following the `amnt of lines // columns`,  
+to change the direction to horizontal,  
+change the last argument of `lateralSlider` to `true`.  
 
-4 : **shift with noise per cell** direction change controlled by `continuous`.  
+4 : **shift with noise per cell** :  
+direction change controlled by `continuous`.  
 
-5 & 6 : **grad center + inner flip coords** - rect boundaries are controlled by the `rectangle size`, and the amount of sections by `amnt of lines // columns`. The functions `texFlipV` in main.frag are used here, with the last 2 arguments adding a flip on the section coordinate, and a gradiant on the rectangle ( in this case true and true, therefore grad + flip is processed on the image).  
+5 & 6 : **grad center + inner flip coords** -  
+rect boundaries are controlled by the `rectangle size`,  
+and the amount of sections by `amnt of lines // columns`.  
+The functions `texFlipV` in main.frag are used here, with the last 2 arguments adding a flip on the section coordinate,  
+and a gradiant on the rectangle ( in this case true and true, therefore grad + flip is processed on the image).  
 
-7 : **bright lines** sections of lines of different colors. the first argument gives the direction of the lines - in this case y -. The parameter `continuous` de activates the thresholding on gb, if `ON`, which makes it go less flashy. The `Mask Layers` control the amount of colors layers added. Works best with 2 layers.  
+7 : **bright lines** sections of lines of different colors.  
+the first argument gives the direction of the lines - in this case y -.  
+The parameter `continuous` de activates the thresholding on gb,  
+if `ON`, which makes it go less flashy.  
+The `Mask Layers` control the amount of colors layers added. Works best with 2 layers.  
 
 8 : **background color** // invert background color - outside pattern detection.  
 

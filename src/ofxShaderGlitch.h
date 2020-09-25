@@ -3,8 +3,10 @@
 //  Gradient
 //
 //  Created by Pierre Tardif on 10/05/2020.
-//	modified by moebiusSurfing
 //
+//	this fork is modified by moebiusSurfing:
+//	includes a preset manager engine and some helpers to integrate in other projects or addons.
+//	
 
 ///	TODO:
 ///	+	reset per zone
