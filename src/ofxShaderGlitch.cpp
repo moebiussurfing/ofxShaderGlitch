@@ -3,13 +3,16 @@
 //  Gradient
 //
 //  Created by Pierre Tardif on 10/05/2020.
-//
+//	modified fork by moebiusSurfing
 
 #include "ofxShaderGlitch.h"
 
 //--------------------------------------------------------------
 void ofxShaderGlitch::exit() {
+
+#ifdef USE_PRESETS_MANAGER
 	presetsManager.exit();//only required to store some gui/class settings.
+#endif
 
 	ofRemoveListener(params.parameterChangedE(), this, &ofxShaderGlitch::Changed_Params);
 	ofRemoveListener(ofEvents().keyPressed, this, &ofxShaderGlitch::keyPressed);
@@ -21,7 +24,7 @@ void ofxShaderGlitch::exit() {
 void ofxShaderGlitch::setup() {
 	setLogLevel(OF_LOG_NOTICE);
 
-	//presetsManager
+	// presetsManager
 	setupPresetsManager();
 
 	ofAddListener(params.parameterChangedE(), this, &ofxShaderGlitch::Changed_Params);
@@ -32,12 +35,15 @@ void ofxShaderGlitch::setup() {
 
 //--------------------------------------------------------------
 void ofxShaderGlitch::update(ofEventArgs & args) {
-	//debug presetsManager
-	//simple callback when preset is loaded 
+
+#ifdef USE_PRESETS_MANAGER
+	// debug presetsManager
+	// simple callback when preset is loaded 
 	if (presetsManager.isDoneLoad())
 	{
 		//ofLogNotice(__FUNCTION__) << "[ " << presetsManager.getGroupName() << "] ------------------------------------------------------------- PRESET LOADED";
 	}
+#endif
 }
 
 //--------------------------------------------------------------
@@ -50,12 +56,15 @@ void ofxShaderGlitch::end() {
 	glitch.end();
 }
 
-#ifdef USE_GUI_INTERNAL
 //--------------------------------------------------------------
 void ofxShaderGlitch::drawGUI() {
-	if (bVisibleGui) gui.draw();
-}
+	if (bVisibleGui) 
+	{
+#ifdef USE_GUI_INTERNAL
+		gui.draw();
 #endif
+	}
+}
 
 //--------------------------------------------------------------
 void ofxShaderGlitch::keyPressed(ofKeyEventArgs &keyArgs) {
@@ -71,8 +80,9 @@ void ofxShaderGlitch::keyPressed(ofKeyEventArgs &keyArgs) {
 		else if (keyArgs.key == 'c') {
 			glitch.nonMaxAndContinuity = !glitch.nonMaxAndContinuity;
 			ofLogNotice(__FUNCTION__) << " maxContinuity = " << ofToString(glitch.nonMaxAndContinuity);
-	}
+		}
 
+#ifdef USE_PRESETS_MANAGER
 		else if (keyArgs.key == ' ') {
 			//presetsManager.setToggleRandomizerPreset();
 		}
@@ -81,28 +91,34 @@ void ofxShaderGlitch::keyPressed(ofKeyEventArgs &keyArgs) {
 			presetsManager.doRandomizePresetSelected();
 			//presetsManager.doRandomizePresetFromFavs();
 		}
-}
+#endif
+	}
 }
 
 //--------------------------------------------------------------
 void ofxShaderGlitch::setupPresetsManager()
 {
-	//customize
+
+#ifdef USE_PRESETS_MANAGER
+	// customize
 	presetsManager.setPath_UserKit_Folder(path_GLOBAL_Folder + "/ofxPresetsManager");
-
-	//-
-
-	//prepare the group and add subgroups that you want presetize:
-	params = glitch.params;
-
-#ifdef USE_GUI_INTERNAL
-	gui.setup(params);
 #endif
 
 	//-
 
-	//presets
+	// prepare the group and add subgroups that you want presetize:
+	params = glitch.params;
 
+#ifdef USE_GUI_INTERNAL
+	gui.setup(params);
+	gui.setPosition(10, 80);
+#endif
+
+	//-
+
+	// presets
+
+#ifdef USE_PRESETS_MANAGER
 	//added ofParametegrGroup to presetsManager
 	//define desired trigged keys
 	presetsManager.add(params, { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' });
@@ -115,6 +131,7 @@ void ofxShaderGlitch::setupPresetsManager()
 
 	//final startup refresh
 	//presetsManager.refresh();
+#endif
 
 	//nothing more!
 	//all presets are stored on runtime to xml files.
@@ -124,8 +141,12 @@ void ofxShaderGlitch::setupPresetsManager()
 
 	params_Control.setName("CONTROLS");
 	params_Control.add(glitch.bEnable);
+
+//#ifdef USE_PRESETS_MANAGER
 	//params_Control.add(presetsManager.PRESET_selected);
 	//params_Control.add(presetsManager.PLAY_RandomizeTimer);
+//#endif
+
 	params_Control.add(glitch.typeEffectName.set("TYPE", ""));
 	params_Control.add(glitch.bEnableBlur);
 	params_Control.add(glitch.bReset);
@@ -154,7 +175,6 @@ void ofxShaderGlitch::Changed_Params(ofAbstractParameter &e)
 
 	//-
 
-	//breaks presets..
 	//if (name == "ENABLE FEEDBACK")
 	//{
 	//	if (!glitch.feedbackEdge.activateFeedback.get()) {

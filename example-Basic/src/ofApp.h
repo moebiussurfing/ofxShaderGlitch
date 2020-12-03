@@ -14,7 +14,7 @@ public:
 	void exit();
 	void keyPressed(int key);
 
-	//source
+	// source
 	void switchInput();
 	ofImage image;
 	ofVideoGrabber vidGrabber;

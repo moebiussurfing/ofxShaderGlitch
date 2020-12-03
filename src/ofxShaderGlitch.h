@@ -5,7 +5,7 @@
 //  Created by Pierre Tardif on 10/05/2020.
 //
 //	this fork is modified by moebiusSurfing:
-//	includes a preset manager engine and some helpers to integrate in other projects or addons.
+//	includes an optional preset manager engine and some helpers to integrate in other projects or addons.
 //	
 
 ///	TODO:
@@ -14,27 +14,25 @@
 ///	+	make play toggle public to expose to gui
 ///	+	make 2 public groups to split into external gui
 
-#ifndef ofxShaderGlitch_hpp
-#define ofxShaderGlitch_hpp
-
-//----
-
-//#define USE_GUI_INTERNAL
-
-//----
-
+#pragma once
 
 #include "ofMain.h"
-//#include <stdio.h>
-//#include "ofEvents.h"
 
-// ---- dependency ---- //
+//--------
+
+// DEFINES
+
+//#define USE_PRESETS_MANAGER
+#define USE_GUI_INTERNAL
+
+//--------
+
 #include "ofxAutoReloadedShader.h"
-
-// ---- custom ---- //
 #include "GlitchManager/GlitchManager.hpp"
 
+#ifdef USE_PRESETS_MANAGER
 #include "ofxPresetsManager.h"
+#endif
 
 #ifdef USE_GUI_INTERNAL
 #include "ofxGui.h"
@@ -63,7 +61,10 @@ public:
 	bool bEnabledKeys;
 	void setKeysEnabled(bool b) {
 		bEnabledKeys = b;
+
+#ifdef USE_PRESETS_MANAGER
 		presetsManager.setEnableKeys(b);
+#endif
 	}
 
 	//shader
@@ -104,15 +105,15 @@ public:
 	
 	//-
 
-	//feed the fx
+	// feed the fx
 public:
 	void begin();
 	void end();
 
 	//-
 
-	//TODO:
-	//optional to debug..
+	// TODO:
+	// optional to debug..
 	void update(ofEventArgs & args);
 
 #ifdef USE_GUI_INTERNAL
@@ -126,18 +127,25 @@ private:
 	string path_GLOBAL_Folder;
 
 public:
-	void setPath_GlobalFolder(string folder);//path for root container folder
+	void setPath_GlobalFolder(string folder);// path for root container folder
 
-	//presetsManager
+
+#ifdef USE_PRESETS_MANAGER
 public:
+	// presetsManager
 	ofxPresetsManager presetsManager;
-	void setupPresetsManager();
+#endif
+
+public:
 	ofParameterGroup params;
+
+private:
+	void setupPresetsManager();
 	void Changed_Params(ofAbstractParameter &e);
 
 private:
 #ifdef USE_GUI_INTERNAL
-	ofxPanel gui;//internal gui
+	ofxPanel gui;// internal gui
 #endif
 	bool bVisibleGui = false;
 
@@ -145,14 +153,21 @@ public:
 	//--------------------------------------------------------------
 	void setVisibleGui(bool b) {
 		bVisibleGui = b;
+
+#ifdef USE_PRESETS_MANAGER
 		//presetsManager.setVisible_GUI_ImGui(bVisibleGui);
 		presetsManager.setVisible_PresetClicker(bVisibleGui);
+#endif
 	}
+
 	//--------------------------------------------------------------
 	void setToggleVisibleGui() {
 		bVisibleGui = !bVisibleGui;
+		
+#ifdef USE_PRESETS_MANAGER
 		//presetsManager.setVisible_GUI_ImGui(bVisibleGui);
 		presetsManager.setVisible_PresetClicker(bVisibleGui);
+#endif
 	}
 
 	//--
@@ -184,4 +199,3 @@ private:
 	}
 };
 
-#endif /* ofxShaderGlitch_hpp */

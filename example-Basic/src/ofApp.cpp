@@ -14,6 +14,8 @@ void ofApp::setup()
 	font.loadFont(ofToDataPath("Fonts/DIN.otf"), 8);
 
 	shaderGlitch.setup();
+
+	shaderGlitch.setVisibleGui(bShowGui);
 }
 
 //--------------------------------------------------------------
@@ -68,9 +70,10 @@ void ofApp::draw()
 		ofSetColor(255);
 		if (font.isLoaded())font.drawString(_info, pos.x, pos.y);
 		else ofDrawBitmapString(_info, pos.x, pos.y);
+
+		shaderGlitch.drawGUI();//use addon internal gui panel
 	}
 
-	//shaderGlitch.drawGUI();//use addon internal gui panel
 }
 
 //--------------------------------------------------------------

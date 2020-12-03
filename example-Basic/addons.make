@@ -1,6 +1,2 @@
-ofxAutoReloadedShader
 ofxGui
-ofxImGui
-ofxPresetsManager
 ofxShaderGlitch
-ofxSurfingHelpers
