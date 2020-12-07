@@ -4,7 +4,7 @@ This is a fork with small changes to make easy the integration with my addon:
 https://github.com/moebiussurfing/ofxPresetsManager  
 This allows to handle not only presets (managing, tweaking, cloning ...etc), but also randomized behaviors with probabilities to each preset, to make a kind of live-random-scene switching between different presets.  
 
-===================================================================================
+-------------------------------------
 
 
 Glitch Shader generator In [Openframeworks](https://openframeworks.cc).
