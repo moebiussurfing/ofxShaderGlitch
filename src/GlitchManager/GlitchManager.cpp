@@ -63,7 +63,7 @@ void GlitchManager::initGui() {
 	typeEffect.add(feedbackEdge.feedbackGUI);
 
 	bEnable.set("ENABLE", true);
-	bEnableBlur.set("BLUR", true);
+	bEnableBlur.set("BLUR", false);
 	bReset.set("RESET", false);
 
 	params.setName("ofxShaderGlitch");

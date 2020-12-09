@@ -21,52 +21,52 @@
 //Feedback
 #include "FeedbackManager/FeedbackManager.hpp"
 
-class GlitchManager{
-    
-    public :
-    GlitchManager(){
-        setup();
-    }
-    
-    void setup();
-    void setup(glm::vec2 sizeImg);
-    void begin();
-    void end();
-    void refresh();
-    
-    bool guiON;
-    ofParameterGroup typeTiling, typeEffect;
-    ofParameter < int > typeT, typeE;
+class GlitchManager {
+
+public:
+	GlitchManager() {
+		setup();
+	}
+
+	void setup();
+	void setup(glm::vec2 sizeImg);
+	void begin();
+	void end();
+	void refresh();
+
+	bool guiON;
+	ofParameterGroup typeTiling, typeEffect;
+	ofParameter < int > typeT, typeE;
 	int typeE_PRE = -1;
-    ofParameter < ofVec2f > amntLinesColumns;
-    ofParameter < ofVec2f > speedMoves;
-    ofParameter < ofVec4f > props;
-    ofParameter < float > alphaGradiant;
-    ofParameter < ofColor > gradiantColor;
-    ofParameter < ofColor > backgroundColor;
-    ofParameter < bool > continuous;
-    ofParameter < float > thresholdNoise;
-    
-    void initGui();
-    void drawGUI(){if(guiON)gui.draw();}
-        
-    ofxPanel gui;
-    
-    glm::vec2 resImg;
-    ofxAutoReloadedShader shader, gaussian;
-    CellManager cells;
-    FeedbackManager feedbackEdge;
-    
-    ofFbo f;
-    bool nonMaxAndContinuity;
-    
-    ofParameter < bool > bEnable;
-    ofParameter < bool > bEnableBlur;
-    ofParameter < bool > bReset;
-    ofParameter < string> typeEffectName;
+	ofParameter < ofVec2f > amntLinesColumns;
+	ofParameter < ofVec2f > speedMoves;
+	ofParameter < ofVec4f > props;
+	ofParameter < float > alphaGradiant;
+	ofParameter < ofColor > gradiantColor;
+	ofParameter < ofColor > backgroundColor;
+	ofParameter < bool > continuous;
+	ofParameter < float > thresholdNoise;
+
+	void initGui();
+	void drawGUI() { if (guiON)gui.draw(); }
+
+	ofxPanel gui;
+
+	glm::vec2 resImg;
+	ofxAutoReloadedShader shader, gaussian;
+	CellManager cells;
+	FeedbackManager feedbackEdge;
+
+	ofFbo f;
+	bool nonMaxAndContinuity;
+
+	ofParameter < bool > bEnable;
+	ofParameter < bool > bEnableBlur;
+	ofParameter < bool > bReset;
+	ofParameter < string> typeEffectName;
 	ofParameterGroup params;
 
-    void doReset();
+	void doReset();
 	//ofParameterGroup params_Control;
 };
 
